@@ -74,19 +74,22 @@ struct ContentView: View
 
 	var body: some View
 	{
-		ScrollView
+		if vm.posts.isEmpty { ProgressView() } else
 		{
-			VStack(alignment: .leading)
+			ScrollView
 			{
-				ForEach(vm.posts)
+				VStack(alignment: .leading)
 				{
-					post in
+					ForEach(vm.posts)
+					{
+						post in
 
-					Text("#\(post.id) \(post.title)").font(.title)
+						Text("#\(post.id) \(post.title)").font(.title)
 
-					Text(post.body).padding(.vertical)
-				}
-			}.padding(.horizontal)
+						Text(post.body).padding(.vertical)
+					}
+				}.padding(.horizontal)
+			}
 		}
 	}
 }
