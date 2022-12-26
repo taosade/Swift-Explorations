@@ -115,36 +115,36 @@ struct ContentView: View
 
 	var body: some View
 	{
-			VStack(spacing: 20)
+		VStack(spacing: 20)
+		{
+			if let image = vm.image
 			{
-				if let image = vm.image
+				Image(uiImage: image)
+				.resizable()
+				.scaledToFit()
+				.frame(height: 300)
+			}
+
+			Group
+			{
+				Button("Save image to FileManager")
 				{
-					Image(uiImage: image)
-					.resizable()
-					.scaledToFit()
-					.frame(height: 300)
+					vm.saveImage()
 				}
 
-				Group
+				Button("Delete image from FileManager")
 				{
-					Button("Save image to FileManager")
-					{
-						vm.saveImage()
-					}
+					vm.deleteImage()
+				}
 
-					Button("Delete image from FileManager")
-					{
-						vm.deleteImage()
-					}
+				Button("Get image from FileManager")
+				{
+					vm.getImage()
+				}
+			}.buttonStyle(.bordered)
 
-					Button("Get image from FileManager")
-					{
-						vm.getImage()
-					}
-				}.buttonStyle(.bordered)
-
-				Spacer(minLength: 0)
-			}
+			Spacer(minLength: 0)
+		}
 	}
 }
 
